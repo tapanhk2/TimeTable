@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+       <title>Time Table</title>
+       <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+       <style>
+           .co-teacher p{
+               padding: 10px 14px;
+               border: 1px solid #e5e5e5;
+               margin-bottom: 0
+            }
+            .co-teacher p:nth-child(even) {background: #e5e5e5}
+       </style>
+   </head>
+   <body>
+       <div class="container">
+           <div class="row">
+               <div class="col-12">
+                   <h1>&nbsp;</h1>
+               </div>
+           </div>   
+           <div class="row">
+               <div class="col-12">
+                   <h3>Class Wise Timetables</h3>
+                   <table class="table table-striped table-bordered" data-sort-name="date" data-sort-order="desc">
+                       <thead>
+                           <tr>
+                               <th scope="col">#</th>
+                               <th scope="col">Monday</th>
+                               <th scope="col">Tuesday</th>
+                               <th scope="col">Wednesday</th>
+                               <th scope="col">Thursday</th>
+                               <th scope="col">Friday</th>
+                               <th scope="col">Saturday</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                       <tr><td colspan="7"><h3>6th</h3></td></tr>
+                       <% var x; for (x in classWiseTimetables.class_6) { %>
+                           <tr>
+                               <td>
+                                   <%= x %>
+                               </td>
+                               <% for(var j=0; j<6; j++) {%>
+                               <td>
+                                   <%= classWiseTimetables.class_6[x][j] %>
+                               </td>
+                               <% } %>
+                           </tr>
+                       <% } %>
+                       <tr><td colspan="7"><h3>7th</h3></td></tr>
+                       <% var x; for (x in classWiseTimetables.class_7) { %>
+                           <tr>
+                               <td>
+                                   <%= x %>
+                               </td>
+                               <% for(var j=0; j<6; j++) {%>
+                               <td>
+                                   <%= classWiseTimetables.class_7[x][j] %>
+                               </td>
+                               <% } %>
+                           </tr>
+                       <% } %>
+                       <tr><td colspan="7"><h3>8th</h3></td></tr>
+                       <% var x; for (x in classWiseTimetables.class_8) { %>
+                           <tr>
+                               <td>
+                                   <%= x %>
+                               </td>
+                               <% for(var j=0; j<6; j++) {%>
+                               <td>
+                                   <%= classWiseTimetables.class_8[x][j] %>
+                               </td>
+                               <% } %>
+                           </tr>
+                       <% } %>
+                       <tr><td colspan="7"><h3>9th</h3></td></tr>
+                       <% var x; for (x in classWiseTimetables.class_9) { %>
+                           <tr>
+                               <td>
+                                   <%= x %>
+                               </td>
+                               <% for(var j=0; j<6; j++) {%>
+                               <td>
+                                   <%= classWiseTimetables.class_9[x][j] %>
+                               </td>
+                               <% } %>
+                           </tr>
+                       <% } %>
+                       <tr><td colspan="7"><h3>10th</h3></td></tr>
+                       <% var x; for (x in classWiseTimetables.class_10) { %>
+                           <tr>
+                               <td>
+                                   <%= x %>
+                               </td>
+                               <% for(var j=0; j<6; j++) {%>
+                               <td>
+                                   <%= classWiseTimetables.class_10[x][j] %>
+                               </td>
+                               <% } %>
+                           </tr>
+                       <% } %>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-12">
+                    <h3>Co-teacher and busy timetable</h3>
+                </div>
+               <div class="col-12 co-teacher">
+                   <% var y; for (y in timetablesAllObj) { %>
+                       
+                       <% if(timetablesAllObj[y].length==1){%> 
+                       <p>Any of 4 teacher(other than <%= timetablesAllObj[y][0].subject%> ) can co-teacher <%= timetablesAllObj[y][0].day+" "+ timetablesAllObj[y][0].time+" in class "+timetablesAllObj[y][0].class %></p>
+                       <% } else if(timetablesAllObj[y].length==2){%> 
+                        <p>Any of 3 teacher(other than <%= timetablesAllObj[y][0].subject%>, <%= timetablesAllObj[y][1].subject%> ) can co-teacher [<%= timetablesAllObj[y][0].day+" "+ timetablesAllObj[y][0].time+" in class "+timetablesAllObj[y][0].class %>, <%= timetablesAllObj[y][1].day+" "+ timetablesAllObj[y][1].time+" in class "+timetablesAllObj[y][1].class %>]</p>
+                       
+                       <% } else if(timetablesAllObj[y].length==3){%> 
+                        <p>Any of 2 teacher(other than <%= timetablesAllObj[y][0].subject%>, <%= timetablesAllObj[y][1].subject%>, <%= timetablesAllObj[y][2].subject%> ) can co-teacher [<%= timetablesAllObj[y][0].day+" "+ timetablesAllObj[y][0].time+" in class "+timetablesAllObj[y][0].class %>, <%= timetablesAllObj[y][1].day+" "+ timetablesAllObj[y][1].time+" in class "+timetablesAllObj[y][1].class %>, <%= timetablesAllObj[y][2].day+" "+ timetablesAllObj[y][2].time+" in class "+timetablesAllObj[y][2].class %>]</p>
+                       
+                       <% } else if(timetablesAllObj[y].length==4){%> 
+                        <p>One teacher(other than 
+                            <%= timetablesAllObj[y][0].subject%>, 
+                            <%= timetablesAllObj[y][1].subject%>, 
+                            <%= timetablesAllObj[y][2].subject%>, 
+                            <%= timetablesAllObj[y][3].subject%> ) 
+                            can co-teacher [<%= timetablesAllObj[y][0].day+" "+ timetablesAllObj[y][0].time+" in class "+timetablesAllObj[y][0].class %>, 
+                            or <%= timetablesAllObj[y][1].day+" "+ timetablesAllObj[y][1].time+" in class "+timetablesAllObj[y][1].class %>, 
+                            or <%= timetablesAllObj[y][2].day+" "+ timetablesAllObj[y][2].time+" in class "+timetablesAllObj[y][2].class %>, 
+                            or <%= timetablesAllObj[y][3].day+" "+ timetablesAllObj[y][3].time+" in class "+timetablesAllObj[y][3].class %>]</p>
+                       
+                       <% } else if(timetablesAllObj[y].length==5){%> 
+                        <p>All teachers are busy in <%= timetablesAllObj[y][3].day+" "+ timetablesAllObj[y][3].time %></p>
+                       <% } %>
+                       
+                   <% } %>
+               </div>
+           </div>
+       </div>
+ 
+   </body>
+</html>   
